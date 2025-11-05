@@ -7,7 +7,7 @@ SET XACT_ABORT ON
 
 BEGIN TRANSACTION QUICKDBD
 
-DROP Table dbo.ProductDim
+DROP Table if exists dbo.ProductDim
 GO
 
 CREATE TABLE [ProductDim] (
