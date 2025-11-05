@@ -10,7 +10,7 @@ BEGIN TRANSACTION QUICKDBD
 DROP Table if exists dbo.ProductDim
 GO
 
-CREATE TABLE [ProductDim] (
+CREATE TABLE [dbo].[ProductDim] (
     [ProductID] int  NOT NULL ,
     [productName] varchar(50)  NOT NULL ,
     [ProductCategoryID] int  NOT NULL ,
