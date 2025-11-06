@@ -1,0 +1,62 @@
+#  Exported from QuickDBD: https://www.quickdatabasediagrams.com/
+#  Link to schema: https://app.quickdatabasediagrams.com/#/d/M404LM
+#  NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
+
+ProductDim as prod
+--
+ProductID int PK 
+ProductName varchar(50) UNIQUE
+ProductCategoryID int
+ProductCategory varchar(50) NULL
+ProductCategoryDescription varchar(max)
+SupplierID int
+Supplier varchar(50) NULL
+
+Orders as ord
+---
+OrdersPK int PK
+OrderID int
+LineItemNumber int
+ProductID int FK >- prod.ProductID
+CustomerID varchar(5)
+EmployeeID int
+ShipVia int
+OrderDate date
+DaysUntilRequired int
+DaysToShipped int
+UnitPrice float
+Quantity int
+Discount float
+LineItemTotal float
+
+Customers as C
+---
+CustomerID int PK 
+CompanyName varchar(200)
+ContactName varchar(200)
+ContactTitle varchar(10)
+Address varchar(max)
+City varchar(50)
+Region varchar(50)
+PostalCode char(9)
+Country varchar(50)
+Phone char(10)
+Fax char(10)
+
+Employees as Emp
+---
+EmployeeID int PK
+LastName varchar(200)
+FirstName varchar(200)
+Title varchar(10)
+TitleOfCourtesy varchar(10)
+BirthDate date
+HireDate date
+Address varchar(100)
+City varchar(200)
+Region varchar(50)
+PostalCode char(10)
+Country varchar(50)
+HomePhone char(10)
+Extension char(10)
+ReportsTo varchar(200)

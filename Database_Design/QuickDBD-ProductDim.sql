@@ -2,6 +2,8 @@
 -- Link to schema: https://app.quickdatabasediagrams.com/#/d/FX7z5t
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
+USE Lab1
+GO
 
 SET XACT_ABORT ON
 

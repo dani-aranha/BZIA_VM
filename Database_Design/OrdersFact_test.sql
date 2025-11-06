@@ -1,10 +1,9 @@
 
 
-WITH OrdersFact (OrdersPK,OrderID,LineItemNumber,ProductID,CustomerID,EmployeeID,ShipVia,OrderDate,DaysUntilRequired
-,DaysToShipped,UnitPrice,Quantity,Discount,LineItemTotal) AS 
-(
-SELECT (o.OrderID * 100000) + od.ProductID
-    ,o.OrderID
+WITH OrdersFact (OrderID,LineItemNumber,ProductID,CustomerID,EmployeeID,ShipVia,OrderDate,DaysUntilRequired
+,DaysToShipped,UnitPrice,Quantity,Discount,LineItemTotal) AS (
+SELECT 
+    o.OrderID
     ,ROW_NUMBER() OVER (PARTITION BY o.OrderID ORDER BY od.ProductID) AS LineItemNumber
     ,od.ProductID
     ,o.CustomerID
@@ -18,10 +17,11 @@ SELECT (o.OrderID * 100000) + od.ProductID
     ,od.Quantity
     ,od.Discount
     ,(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS LineItemTotal
-FROM  Northwind_TC.sales.Orders AS o
-LEFT JOIN Northwind_TC.sales.OrderDetails AS od ON o.OrderID = od.OrderID
+FROM 
+    sales.Orders AS o
+LEFT JOIN sales.OrderDetails AS od ON o.OrderID = od.OrderID
 )
 SELECT *
 FROM OrdersFact
---ORDER BY OrderID, LineItemNumber;
+ORDER BY OrderID, LineItemNumber;
 
