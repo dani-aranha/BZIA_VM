@@ -1,4 +1,7 @@
-WITH CustomerDim (CustomerID,CompanyName,ContactName,ContactTitle,[Address],City,Region,PostalCode,Country,Phone,Fax)
+USE Lab1
+GO
+
+WITH CustomerDim (CustomerID,CompanyName,ContactName,ContactTitle,[Address],City,Region,Country)
 as (
 SELECT CustomerID
       ,CompanyName
@@ -7,10 +10,7 @@ SELECT CustomerID
       ,[Address]
       ,City
       ,Region
-      ,PostalCode
       ,Country
-      ,Phone
-      ,Fax
   FROM Northwind_TC.sales.Customers
 )
 Select * 

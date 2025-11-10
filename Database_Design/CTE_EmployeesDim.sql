@@ -1,21 +1,16 @@
-WITH EmployeeDim (EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,[Address],
-City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo) 
+WITH EmployeeDim (EmployeeID,LastName,FirstName,Title,BirthDate,HireDate,[Address],
+City,Region,Country) 
 as (
 SELECT EmployeeID
       ,LastName
       ,FirstName
       ,Title
-      ,TitleOfCourtesy
       ,BirthDate
       ,HireDate
       ,[Address]
       ,City
       ,Region
-      ,PostalCode
       ,Country
-      ,HomePhone
-      ,Extension
-      ,ReportsTo
   FROM Northwind_TC.emp.Employees
 )
 Select * 

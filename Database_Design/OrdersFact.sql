@@ -1,6 +1,6 @@
 
-
-WITH OrdersFact (OrdersPK,OrderID,LineItemNumber,ProductID,CustomerID,EmployeeID,ShipVia,OrderDate,DaysUntilRequired
+--Changed original "Ordersfact" table name since Pat defined the column as just 'Orders'
+WITH Orders (OrdersPK,OrderID,LineItemNumber,ProductID,CustomerID,EmployeeID,ShipVia,OrderDate,DaysUntilRequired
 ,DaysToShipped,UnitPrice,Quantity,Discount,LineItemTotal) AS 
 (
 SELECT (o.OrderID * 100000) + od.ProductID
@@ -21,7 +21,9 @@ SELECT (o.OrderID * 100000) + od.ProductID
 FROM  Northwind_TC.sales.Orders AS o
 LEFT JOIN Northwind_TC.sales.OrderDetails AS od ON o.OrderID = od.OrderID
 )
+INSERT INTO Lab1.dbo.Orders (OrdersPK,OrderID,LineItemNumber,ProductID,CustomerID,EmployeeID,ShipVia,OrderDate,DaysUntilRequired
+,DaysToShipped,UnitPrice,Quantity,Discount,LineItemTotal)
 SELECT *
-FROM OrdersFact
---ORDER BY OrderID, LineItemNumber;
+FROM Orders
+
 

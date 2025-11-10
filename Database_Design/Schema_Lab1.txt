@@ -1,0 +1,67 @@
+CalendarDim as cal
+--
+# DayID Used for index / Sorting also unique
+DayID int UNIQUE
+# Actual Date is the PK
+DateValue date PK # Clustered
+Year int NULL
+Quarter int NULL
+Month int NULL
+MonthName varchar(10) NULL
+MonthShort varchar(3) NULL
+Week int NULL
+Day int NULL
+DayName varchar(10) NULL
+DayShort varchar(3) NULL
+IsWeekday bit NULL
+
+ProductDim as prod
+--
+ProductID int PK 
+ProductName varchar(50) UNIQUE
+ProductCategoryID int
+ProductCategory varchar(50) NULL
+ProductCategoryDescription varchar(max)
+SupplierID int
+Supplier varchar(50) NULL
+
+Orders as ord
+---
+OrdersPK int PK
+OrderID int
+LineItemNumber int
+ProductID int FK >- prod.ProductID
+CustomerID char(5) FK >- Cust.CustomerID
+EmployeeID int FK >- Emp.EmployeeID
+ShipVia int
+OrderDate date Fk >- cal.DateValue
+DaysUntilRequired int
+DaysToShipped int NULL
+UnitPrice float
+Quantity int
+Discount float
+LineItemTotal float
+
+CustomerDim as Cust
+---
+CustomerID char(5) PK 
+CompanyName varchar(100)
+ContactName varchar(50)
+ContactTitle varchar(10)
+Address varchar(max)
+City varchar(50)
+Region varchar(50)
+Country varchar(50)
+
+EmployeeDim as Emp
+---
+EmployeeID int PK
+LastName varchar(50)
+FirstName varchar(50)
+Title varchar(50)
+BirthDate date
+HireDate date
+City varchar(50)
+Region varchar(50)
+Country varchar(50)
+ReportsTo int 
