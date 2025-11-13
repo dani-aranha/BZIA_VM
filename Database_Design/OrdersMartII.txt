@@ -1,0 +1,11 @@
+EmployeeDim as Emp
+---
+EmployeeID int PK
+LastName varchar(50)
+FirstName varchar(50)
+Title varchar(50)
+BirthDate date
+HireDate date
+City varchar(50)
+Region varchar(50)
+Country varchar(50) 
