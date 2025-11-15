@@ -5,6 +5,9 @@ GO
 
 Create a query that referes itself
 
+USE Northwind_TC
+GO 
+
 EmployeeDimLab
 ---
 EmployeeID int PK
@@ -94,77 +97,59 @@ Complex queries: If you later add more joins or aggregations, CTEs help organize
 
 --NEXT STEP
 /* HINT *Wrap this in a CTE or two ... */
- 
 
-WITH EmployeesCTE AS
-(
-    SELECT
-        EmployeeID
-       ,LastName
-       ,FirstName
-       ,Title
-       ,CAST(BirthDate AS date) AS BirthDate
-       ,CAST(HireDate AS date) AS HireDate
-       ,City
-       ,ISNULL(Region, Country) AS Region
-       ,Country
-       ,ReportsTo
-    FROM emp.Employees
-),
-ManagersCTE (MgrID, ManagerName, ManagerTitle) AS
-(
-    SELECT
-        EmployeeID
-       ,CONCAT_WS(' ', FirstName, LastName)
-       ,Title
-    FROM emp.Employees
-)
+USE Employees
+GO
+
+Truncate Table dbo.ManagerDimLab
+GO
+Truncate Table dbo.EmployeeDimLab 
+GO
+
+USE Northwind_TC
+GO
+
+---Orders matters here as well>>Needs to populate "ManagerDimLab" first due to the FK
+WITH EmployeesCTE (EmployeeID,LastName, FirstName,Title,BirthDate,HireDate,City,Region,Country,MgrID,MgrName, MgrTitle)
+AS (
 SELECT
     e.EmployeeID
-   ,e.LastName
-   ,e.FirstName
-   ,e.Title
-   ,e.BirthDate
-   ,e.HireDate
-   ,e.City
-   ,e.Region
-   ,e.Country
-   ,ISNULL(m.MgrID, -99) AS ReportsTo
-   ,ISNULL(m.ManagerName, 'The Board') AS MgrName
-   ,ISNULL(m.ManagerTitle, 'BoD') AS MgrTitle
-FROM EmployeesCTE e
-LEFT JOIN ManagersCTE m ON e.ReportsTo = m.MgrID
-ORDER BY MgrName;
-
---------
-Truncate Table Lab2.dbo.EmployeeDimLab
-GO
-
-INSERT INTO Lab2.dbo.EmployeeDimLab (EmployeeID,LastName,FirstName,Title,BirthDate,HireDate,City,Region,Country,ReportTo)
- SELECT
-        e.EmployeeID
-       ,e.LastName
-       ,e.FirstName
-       ,e.Title
-       ,CAST(e.BirthDate AS date) AS BirthDate
-       ,CAST(e.HireDate AS date) AS HireDate
-       ,e.City
-       ,ISNULL(e.Region, e.Country) AS Region
-       ,e.Country
-       ,ISNULL(m.EmployeeID, -99) AS ReportsTo
-FROM Northwind_TC.emp.Employees AS e
-LEFT JOIN Northwind_TC.emp.Employees AS m ON e.ReportsTo = m.EmployeeID;
-
-
-Truncate Table Lab2.dbo.ManagerDimLab
-GO
-
-INSERT INTO Lab2.dbo.ManagerDimLab (MgrID, ManagerName, ManagerTitle)
-
-SELECT DISTINCT
-    ISNULL(e.ReportsTo, -99) AS MgrID,
-    ISNULL(m.FirstName + m.LastName, 'The Board') AS ManagerName,
-    ISNULL(m.Title, 'BoD') AS MgrTitle
-FROM Northwind_TC.emp.Employees AS e
-LEFT OUTER JOIN Northwind_TC.emp.Employees AS m
-    ON e.ReportsTo = m.EmployeeID;
+    ,e.LastName
+    ,e.FirstName
+    ,e.Title
+    ,CAST(e.BirthDate AS date)
+    ,CAST(e.HireDate AS date) 
+    ,e.City
+    ,ISNULL(e.Region, e.Country) 
+    ,e.Country
+    ,ISNULL(m.EmployeeID, -99)
+    ,ISNULL(m.FirstName + ' ' + m.LastName, 'The Board') 
+    ,ISNULL(m.Title, 'Bod')
+FROM emp.Employees e
+    LEFT OUTER JOIN emp.Employees m
+        ON e.ReportsTo = m.EmployeeID
+)INSERT INTO Employees.dbo.ManagerDimLab 
+SELECT DISTINCT MgrID, MgrName, MgrTitle
+FROM EmployeesCTE
+;
+WITH EmployeesCTE (EmployeeID,LastName, FirstName,Title,BirthDate,HireDate,City,Region,Country,ReportsTo,MgrName, MgrTitle)
+AS (
+SELECT
+    e.EmployeeID
+    ,e.LastName
+    ,e.FirstName
+    ,e.Title
+    ,CAST(e.BirthDate AS date) 
+    ,CAST(e.HireDate AS date) 
+    ,e.City
+    ,ISNULL(e.Region, e.Country) 
+    ,e.Country
+    ,ISNULL(m.EmployeeID, -99)
+    ,ISNULL(m.FirstName + ' ' + m.LastName, 'The Board') 
+    ,ISNULL(m.Title, 'Bod')
+FROM emp.Employees e
+    LEFT OUTER JOIN emp.Employees m
+        ON e.ReportsTo = m.EmployeeID
+)INSERT INTO Employees.dbo.EmployeeDimLab 
+SELECT EmployeeID,LastName,FirstName,Title,BirthDate,HireDate,City,Region,Country,ReportsTo
+FROM EmployeesCTE
