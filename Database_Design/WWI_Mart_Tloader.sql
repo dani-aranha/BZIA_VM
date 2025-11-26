@@ -1,4 +1,4 @@
-/***** Lup staging Loads	*****/
+/********** Staging Loads************/
 /***** stage.Sales Table Loads *****/
 USE WWI_Mart
 GO
@@ -8,7 +8,8 @@ GO
 
 USE WideWorldImportersDW
 GO
-
+/*A Federated Query is a technique that allows you to run a single query across multiple, different data sources as if they were one. 
+Instead of moving all data into a single database, the query engine connects to each source, retrieves relevant data, and combines the results.*/
 INSERT INTO [WWI_Mart].[stg].[Sale] --Federated Query
 (
     CityKey,
@@ -52,20 +53,34 @@ SELECT
 	  ,fs.[Total Chiller Items]  as TotalChillerItems 
 	  ,fs.[Lineage Key] as LineageKey
 FROM Fact.Sale fs
+;
+GO
 
 /***** Lup Table Loads	*****/
-
-INSERT INTO WWI_Mart.lup.[Package] ([Package])
+GO
+USE WWI_Mart
+GO
+INSERT INTO lup.[Package] ([Package])
 SELECT DISTINCT s.[Package]
-FROM WideWorldImportersDW.Fact.Sale AS s
+FROM stg.Sale AS s
 WHERE NOT EXISTS (
     SELECT 1
-    FROM WWI_Mart.lup.[Package] AS p
+    FROM lup.[Package] AS p
     WHERE p.[Package] = s.[Package]
 );
+
+------OR---------
+
+
+INSERT INTO lup.[Package] ([Package])
+SELECT DISTINCT s.[Package]
+FROM stg.Sale AS s
+EXCEPT
+SELECT Package FROM lup.Package
+
 /*
 Select * 
-From WWI_Mart.lup.Package
+From lup.Package
 Order by 1 asc;
 */
 
@@ -78,13 +93,38 @@ Order by 1 asc;
 
 
 
-/***** fact.Sales Table Loads	*****/
+/************ fact.Sales Table Loads****************/
 
 USE WWI_Mart;
 GO
+TRUNCATE TABLE Fact.Sales
+GO
 
-SELECT fs.SaleKey
-	  ,fs.CityKey
+INSERT INTO [WWI_Mart].[fact].[Sales]
+(
+    CityKey,
+    CustomerKey,
+    BillToCustomerKey,
+    StockItemKey,
+    InvoiceDateKey,
+    DaysToDeliver,
+    SalespersonKey,
+    WWIInvoiceID,
+    Package,
+    Quantity,
+    UnitPrice,
+    TaxRate,
+    TotalExcludingTax,
+    TaxAmount,
+    Profit,
+    TotalIncludingTax,
+    TotalDryItems,
+    TotalChillerItems,
+    LineageKey
+)
+
+SELECT 
+	  fs.CityKey
 	  ,fs.CustomerKey
 	  ,fs.BillToCustomerKey
 	  ,fs.StockItemKey
@@ -104,12 +144,12 @@ SELECT fs.SaleKey
 	  ,fs.TotalDryItems
 	--,fs.[Total Chiller Items]  as TotalChillerItems -- should it be a flag?
 	  ,CASE 
-		WHEN [TotalChillerItems] > 0 THEN 1
-		ELSE 0
+			WHEN [TotalChillerItems] > 0 THEN 1
+			ELSE 0
 	   END as 'ChillerItem'
 	  ,fs.LineageKey
 FROM stg.Sale fs
-	LEFT OUTER JOIN WWI_Mart.lup.package p
+	LEFT OUTER JOIN lup.package p
 	ON fs.Package = p.Package
 
 
