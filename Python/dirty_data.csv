@@ -1,0 +1,51 @@
+Patient ID,Full Name,Province,Date of Birth,Phone,Email,Notes
+139,grace macdonald,MB,1998/04/19,236.918-8620,GRACE.MACDONALD@EXAMPLE.COM,
+146,  grace smith ,NS,1997-07-03, 613 930-5942 ,GRACE.SMITH@EXAMPLE.COM,Good client – prefers mornings
+107,  Eve Taylor ,manitoba ,1991-08-05,+1 (604) 123-9267,eve.taylor@example.com,
+111,  grace brown ,Ontario,1941/11/28,403-928-4456,GRACE.BROWN@EXÁMPLE.COM,FOLLOW-UP needed
+110,  carol anderson ,NB ,1955-12-12,+1 (236) 845-2465,CAROL.ANDERSON@MAIL.CA,Requires special attention
+110,Grace Martin,british columbia ,1947/01/19,604.263-5147, GRACE.MARTIN@EXÁMPLE.COM ,Good client – prefers mornings
+127,  ian smith ,qc,1974-01-03,613.795-4366,ian.smith@exámple.com,VIP client
+118,david o'brien,QC,21/11/1976,403-378-9519,david.o'brien@mail.ca,Requires special attention
+131,ian thomas,ontario,1988/01/01,587-445-2681, IAN.THOMAS@MAIL.CA ,Requires special attention
+116,alice anderson,Yukon,1955/12/25,+1 (403) 453-7334, alice.anderson@mail.ca ,Good client – prefers mornings
+142,  ian macdonald ,NB,1970-10-09,613.131-7785,ian.macdonald@exámple.com,Garbled text: â€™
+129,  Carol Brown ,QC ,1984/06/19,416.842-7749, carol.brown@example.com ,FOLLOW-UP needed
+125,  Bob Smith ,Saskatchewan,1979-12-11,604.948-6766, BOB.SMITH@EXÁMPLE.COM ,VIP client
+115,  bob macdonald ,nt,1947-02-20,902-180-3882,BOB.MACDONALD@EXAMPLE.COM,VIP client
+120,bob taylor,NT ,1961-09-09,902.147-4953,bob.taylor@example.com,Requires special attention
+119,  carol wilson ,Saskatchewan,14/02/1990,902.608-2931,carol.wilson@example.com,VIP client
+143,  Jack Smith ,NS ,1952/03/26,416.331-7113,jack.smith@example.com,FOLLOW-UP needed
+122,  alice brown ,BC,1974-08-04,604.118-3736, ALICE.BROWN@EXÁMPLE.COM ,
+119,carol brown,NL ,23/12/2009,780.103-7790,CAROL.BROWN@MAIL.CA,Garbled text: â€™
+139,  alice anderson ,SK,2003/11/21,613.940-5662, alice.anderson@mail.ca ,VIP client
+142,  Frank Thomas ,ON,1990/01/05, 236 140-7915 , frank.thomas@mail.ca ,
+112,carol martin,QC,2002-11-02,236-663-8825, CAROL.MARTIN@EXAMPLE.COM ,VIP client
+101,  david thomas ,QC,14/07/1985,+1 (587) 146-2237,david.thomas@exámple.com,VIP client
+138,  Hannah Wilson ,Alberta,10/07/1983,780-716-4347,hannah.wilson@mail.ca,FOLLOW-UP needed
+150,Carol Taylor,Nunavut,01/05/1980,780-269-7038, carol.taylor@exámple.com ,VIP client
+138,  Alice Wilson ,Northwest Territories ,1999/08/02, 613 290-5924 , ALICE.WILSON@EXAMPLE.COM ,Garbled text: â€™
+102,jack moore,Manitoba,04/02/1981,+1 (236) 634-3724,JACK.MOORE@MAIL.CA,Good client – prefers mornings
+120,Ian Wilson,NU,1944/08/21, 403 824-1423 ,ian.wilson@mail.ca,FOLLOW-UP needed
+128,Ian Smith,ontario ,1998/09/14,236-684-4814,ian.smith@mail.ca,Garbled text: â€™
+136,Jack Smith,nova scotia,02/06/1966,250-292-8760,JACK.SMITH@EXAMPLE.COM,VIP client
+101,Ian Taylor,yukon ,1949-09-13,250-340-1905,ian.taylor@example.com,VIP client
+103,  frank o'brien ,Nova Scotia ,16/02/2005,250-811-3644,FRANK.O'BRIEN@EXÁMPLE.COM,VIP client
+127,  carol smith ,Quebec,1972/09/05,613-751-7684,CAROL.SMITH@EXAMPLE.COM,
+150,ian thomas,Saskatchewan,22/12/1980,+1 (902) 207-5163,IAN.THOMAS@EXÁMPLE.COM,FOLLOW-UP needed
+127,  alice anderson ,ns,18/01/1981,416-392-7017,alice.anderson@exámple.com,FOLLOW-UP needed
+137,Ian Anderson,NT ,10/08/1981,780.478-8099,ian.anderson@example.com,Garbled text: â€™
+134,  Eve MacDonald ,Ontario ,1980-01-19,403-191-9265,eve.macdonald@exámple.com,Requires special attention
+127,Hannah Taylor,NL,1963-10-19,780.364-2630,HANNAH.TAYLOR@EXÁMPLE.COM,VIP client
+116,eve smith,Saskatchewan,1961/05/03,+1 (236) 231-1786, EVE.SMITH@EXÁMPLE.COM ,Garbled text: â€™
+107,Eve Moore,NS,1982/02/25,236.156-8893, eve.moore@mail.ca ,
+114,  Bob Thomas ,bc,1962-09-10,780-814-6150,BOB.THOMAS@MAIL.CA,
+124,  ian smith ,QC,08/12/1971, 236 819-8576 ,IAN.SMITH@EXAMPLE.COM,Garbled text: â€™
+140,Ian Wilson,NT ,27/10/2006,604.234-9604,ian.wilson@example.com,FOLLOW-UP needed
+124,david thomas,Nova Scotia,1940-11-22,+1 (236) 378-7307,DAVID.THOMAS@EXÁMPLE.COM,FOLLOW-UP needed
+147,  Eve Moore ,Alberta ,1964/10/01,613.409-6250, EVE.MOORE@EXAMPLE.COM ,VIP client
+128,Eve Thomas,Nunavut,1991/11/13,416.207-5313,EVE.THOMAS@MAIL.CA,Garbled text: â€™
+110,  Hannah MacDonald ,Saskatchewan,2004-09-20, 613 167-8470 ,hannah.macdonald@example.com,VIP client
+115,  Grace MacDonald ,Quebec ,13/06/1974, 236 995-4278 , grace.macdonald@mail.ca ,
+127,David Anderson,BC,1976-05-07,416.734-2642,DAVID.ANDERSON@MAIL.CA,Good client – prefers mornings
+109,  Bob Wilson ,Ontario ,1976/01/18,+1 (780) 858-4997,bob.wilson@example.com,Garbled text: â€™
