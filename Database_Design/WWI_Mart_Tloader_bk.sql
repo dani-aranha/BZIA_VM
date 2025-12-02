@@ -262,10 +262,6 @@ REFERENCES lup.Package (PackageKey);
 
 
 /*
-
-SELECT * 
-FROM FACT.SALES
-
 USE WWI_Mart
 SELECT * 
 FROM sys.foreign_keys
