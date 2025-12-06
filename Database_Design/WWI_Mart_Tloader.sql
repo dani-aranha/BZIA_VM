@@ -158,12 +158,6 @@ SELECT [pkCustomerID]
  WHERE Customer = BillToCustomer
  OR Customer in ('Unknown')
 
-ALTER TABLE fact.Sales  
-ADD  CONSTRAINT FK_Sales_BillToCustomer 
-FOREIGN KEY(BillToCustomerKey)
-REFERENCES dim.BillToCustomer (pkCustomerID)
- 
-GO
 
 
 /************ fact.Sales Table Loads****************/
