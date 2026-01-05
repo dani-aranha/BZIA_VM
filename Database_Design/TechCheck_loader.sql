@@ -29,9 +29,13 @@ From Cte_dim_Customer;
 
 /**********************************/
 
+
 INSERT INTO fact.Sales
 SELECT * 
 FROM src.Sales
+
+--TRUNCATE TABLE fact.Sales; 
+
 
 
 
