@@ -1,7 +1,7 @@
 
 
 
-CREATE OR ALTER VIEW stg.dRoute as
+--CREATE OR ALTER VIEW stg.dRoute as
 SELECT  rid.Route_ID
       , ri.Route_Number
       , ri.Route_Name
@@ -10,14 +10,15 @@ SELECT  rid.Route_ID
             WHEN CHARINDEX('-', ri.Route_Name) = 0
                 THEN TRIM(ri.Route_Name)
             ELSE TRIM(SUBSTRING(ri.Route_Name,1,CHARINDEX('-', ri.Route_Name) - 1))
-        END AS Init_Destination
+        END AS 'Init_Destination'
       , CASE
             WHEN ri.route_name not like '%exp%' then 0
             ELSE 1
         END AS 'fExpress'
 FROM stg.HaliTran ri
-INNER JOIN lup.Route_ID_Lookup rid
+LEFT OUTER JOIN lup.Route_ID_Lookup rid
     ON CONCAT(ri.Route_Number, '-', ri.Route_Name) = rid.Route_Name
+WHERE rid.Route_ID not in (SELECT Route_ID FROM dim.Route) 
 GROUP BY
         rid.Route_ID
       , ri.Route_Number
@@ -26,7 +27,8 @@ GROUP BY
             WHEN CHARINDEX('-', ri.Route_Name) = 0
                 THEN TRIM(ri.Route_Name)
             ELSE TRIM(SUBSTRING(ri.Route_Name,1,CHARINDEX('-', ri.Route_Name) - 1))
-        END;
+        END
+ ORDER BY 1 ASC;
 /*
 
 ### Fact table - Route_ID, Route_hour, Route_date, Ridership_Total

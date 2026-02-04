@@ -1,10 +1,15 @@
---truncate table lup.Route_ID_Lookup >> se truncar, o ID vai mudar
---truncate table dim.Route
-
+/*
+truncate table stg.HaliTran
+truncate table fact.Ridership
+truncate table lup.Route_ID_Lookup 
+truncate table dim.Route
+truncate table err.Ridership****
+*/
 
 SELECT (SELECT count(*) FROM stg.HaliTran) as Stage
 	  ,(SELECT count(*) FROM lup.Route_ID_Lookup) as LookUp
 	  ,(SELECT count(*) FROM fact.Ridership) as Fact
+	  ,(SELECT count(*) FROM fact.RidershipHistorical) as FactHist
 	  ,(SELECT count(*) FROM dim.Route) as Dim
 
 SELECT TOP 1 *
