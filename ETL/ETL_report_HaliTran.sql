@@ -1,9 +1,13 @@
+USE HaliTranTgt
+GO
+
 /*
 truncate table stg.HaliTran
+truncate table lup.Route_ID_Lookup
 truncate table fact.Ridership
-truncate table lup.Route_ID_Lookup 
+truncate table fact.RidershipHistorical 
 truncate table dim.Route
-truncate table err.Ridership****
+truncate table err.RidershipFlat
 */
 
 SELECT (SELECT count(*) FROM stg.HaliTran) as Stage
@@ -24,4 +28,26 @@ from fact.Ridership
 SELECT TOP 1 *
 FROM dim.Route
 
+SELECT *
+FROM err.FlatFileImport
+ORDER BY 4 ASC
+
+
+/*
+
+ALTER TABLE fact.Ridership 
+DROP CONSTRAINT FK_FactRidership_DimRoute
+
+--Add the foreign key on the fact table
+ALTER TABLE fact.Ridership
+WITH CHECK
+ADD CONSTRAINT FK_FactRidership_DimRoute
+    FOREIGN KEY (Route_ID)
+    REFERENCES dim.[Route](Route_ID);
+
+
+ALTER TABLE dim.Route
+ADD CONSTRAINT PK_DimRoute PRIMARY KEY (Route_ID);
+
+*/
 
