@@ -2,12 +2,15 @@
 TRUNCATE TABLE lup.Dataset
 TRUNCATE TABLE fact.DatasetUsage
 TRUNCATE TABLE stg.HLX_Dataset
+TRUNCATE TABLE err.UsageFlat
 */
 
 SELECT (SELECT count(*) FROM stg.DataSource) as StageCnt
 	  ,(SELECT count(*) FROM lup.Dataset) as LupCnt
 	  ,(SELECT count(*) FROM fact.UsageTotal) as FactCnt
-	  ,(SELECT count(*) FROM dim.Catalogue) as DimCnt
+	  ,(SELECT count(*) FROM dim.Catalogue) as CatalogueCnt
+	  ,(SELECT count(*) FROM dim.Calendar) as CalendarCnt
+
 ;
 
 SELECT TOP 1 *
