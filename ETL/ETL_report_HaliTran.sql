@@ -15,6 +15,12 @@ SELECT (SELECT count(*) FROM stg.HaliTran) as Stage
 	  ,(SELECT count(*) FROM fact.Ridership) as Fact
 	  ,(SELECT count(*) FROM fact.RidershipHistorical) as FactHist
 	  ,(SELECT count(*) FROM dim.Route) as Dim
+	  ,(SELECT count(*) FROM err.FlatFileImport) Err
+	  ,(SELECT count(*) FROM err.FlatFileImportHist) ErrHist
+
+--select count(distinct Route_Date) from [fact].[Ridership]
+
+
 
 SELECT TOP 1 *
 FROM stg.HaliTran
@@ -31,6 +37,14 @@ FROM dim.Route
 SELECT *
 FROM err.FlatFileImport
 ORDER BY 4 ASC
+
+
+INSERT INTO err.FlatFileImportHist
+SELECT *
+FROM err.FlatFileImport
+
+
+
 
 
 /*
