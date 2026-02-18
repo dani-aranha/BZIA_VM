@@ -14,13 +14,12 @@ SELECT (SELECT count(*) FROM stg.HaliTran) as Stage
 	  ,(SELECT count(*) FROM lup.Route_ID_Lookup) as LookUp
 	  ,(SELECT count(*) FROM fact.Ridership) as Fact
 	  ,(SELECT count(*) FROM fact.RidershipHistorical) as FactHist
-	  ,(SELECT count(*) FROM dim.Route) as Dim
+	  ,(SELECT count(*) FROM dim.Route) as DimRoute
+	  ,(SELECT count(*) FROM dim.Route_hour) as RouteHour
+	  ,(SELECT count(*) FROM rpt.fRidership) as TotalRidership
+	  ,(SELECT count(*) FROM rpt.vRidershipByRouteDay) as RidershipbyRouteDay
 	  ,(SELECT count(*) FROM err.FlatFileImport) Err
 	  ,(SELECT count(*) FROM err.FlatFileImportHist) ErrHist
-
---select count(distinct Route_Date) from [fact].[Ridership]
-
-
 
 SELECT TOP 1 *
 FROM stg.HaliTran
@@ -34,14 +33,15 @@ from fact.Ridership
 SELECT TOP 1 *
 FROM dim.Route
 
-SELECT *
+SELECT TOP 1 *
+FROM dim.Route_hour
+
+SELECT TOP 1 *
+FROM rpt.vRidershipByRouteDay
+
+SELECT TOP 1 *
 FROM err.FlatFileImport
 ORDER BY 4 ASC
-
-
-INSERT INTO err.FlatFileImportHist
-SELECT *
-FROM err.FlatFileImport
 
 
 
