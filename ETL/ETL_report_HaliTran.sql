@@ -18,6 +18,7 @@ SELECT (SELECT count(*) FROM stg.HaliTran) as Stage
 	  ,(SELECT count(*) FROM dim.Route_hour) as RouteHour
 	  ,(SELECT count(*) FROM rpt.fRidership) as TotalRidership
 	  ,(SELECT count(*) FROM rpt.vRidershipByRouteDay) as RidershipbyRouteDay
+	  ,(SELECT count(*) FROM rpt.RidershipHourly) as RidershipHourly
 	  ,(SELECT count(*) FROM err.FlatFileImport) Err
 	  ,(SELECT count(*) FROM err.FlatFileImportHist) ErrHist
 
