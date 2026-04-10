@@ -1,0 +1,383 @@
+📊 PROJECT STATUS — Power BI
+DBAS2101/3182 – Data Reporting (B)
+Halifax Regional Municipality (HRM) – Open Data (ArcGIS Hub)
+
+🎯 Project Objective
+Evaluate the real usage and overall health of the HRM public dataset catalog by distinguishing between:
+
+Historical impact
+Current activity intensity
+Dataset maturity
+
+The goal is to support data governance and strategic decision-making, rather than purely exploratory analysis.
+
+📦 Data Source
+ArcGIS Hub – Open Data (HRM)
+
+Dataset: Usage statistics CSV
+~639,000 records
+Usage tracked over time per dataset
+
+Fixed Reference Date
+
+October 19, 2025 (last real update of the data)
+
+✅ The use of a fixed date is intentional, ensuring analytical stability, reproducibility, and consistent age calculations.
+
+🧱 Data Model — ✅ COMPLETED
+Model Type
+Star Schema
+Tables
+
+Fact_Usage – usage events over time
+Dim_Dataset – one row per dataset
+Dim_AgeBand – dataset age categories
+Dim_Cluster – health / usage classification
+
+Relationships
+
+Artificial key: DatasetKey = Dataset | OD_ID
+One‑to‑many: Dim_Dataset → Fact_Usage
+
+✅ Model validated visually and logically.
+
+📐 Measures & Business Logic — ✅ COMPLETED
+Dataset Age
+
+Dataset_Age_Days
+Calculated using the fixed reference date (19/10/2025)
+
+Age Bands
+
+0–1 year
+1–2 years
+2–4 years
+4–8 years
+8+ years
+
+Core Metrics
+
+Total_Usage
+
+Represents historical impact
+
+
+Usage_Per_Year (Average Annual Usage)
+
+Represents current activity intensity
+
+
+
+✅ Average annual usage is used deliberately to avoid bias toward very old datasets.
+
+🔀 Cluster Logic — ✅ DEFINED & DEFENSIBLE
+Clusters are anchored in dataset age + usage intensity:
+
+Power Active
+Fresh Light
+Legacy Heavy (Mature / Stable)
+
+Explicitly not interpreted as obsolete
+
+
+Dormant
+Very Old Low Activity (may be empty)
+
+✅ Clusters are logical, explainable, and governance‑oriented.
+
+📄 Report Pages — CURRENT STATUS
+
+✅ 01 – Data Model Validation – Clusters (FINAL)
+Purpose
+
+Validate data model consistency and clustering logic
+Technical page (not exploratory)
+
+Content
+
+Dataset distribution by Cluster
+Matrix: Cluster × AgeBand
+
+✅ Finalized
+✅ Neutral and clean visuals
+✅ Correct visual hierarchy
+✅ Serves Presentation 1 (technical walkthrough)
+
+✅ 02 – Dataset Health Overview (FINAL)
+Purpose
+
+Executive‑level macro view of catalog health
+
+Content
+
+Cards:
+
+Total Datasets (239)
+% Power Active (14.6%)
+% Dormant (37.2%)
+% Largest Cluster (Legacy Heavy – 38.9%)
+
+
+Main visual: Dataset Distribution by Health Profile
+Short neutral summary sentence
+
+✅ No analytical leakage
+✅ No usage metrics
+✅ Clean executive framing
+
+✅ 03 – Usage & Impact (ANALYTICAL – CLOSED)
+Purpose
+
+Show where usage actually happens
+
+Content
+
+Top 5 Power Active datasets by Total Usage
+Total Dataset Usage by Cluster
+Average Annual Usage per Dataset by Cluster
+Dataset Count by Cluster (with drill‑down)
+
+✅ Strong analytical separation
+✅ No recommendations on this page
+Advanced Features (Pedagogical)
+
+✅ Drill‑down hierarchy (Cluster → AgeBand → Dataset)
+Included intentionally to demonstrate Power BI proficiency
+✅ Custom tooltip on Average Annual Usage
+
+Backed by a hidden Dataset Detail page
+Shows top contributing datasets per cluster
+
+
+
+✅ Tooltips add depth without polluting the narrative.
+
+✅ 05 – Strategic Recommendations (CONTENT COMPLETE)
+Purpose
+
+Executive, decision‑oriented closing page
+
+Content
+
+Context cards (% clusters)
+Three recommendations, each with Why + Action:
+
+Maintain and Promote Power Active datasets
+Revitalize Legacy Heavy datasets with proven value
+Reduce noise from Dormant and Very Old datasets
+
+
+
+✅ No analytics
+✅ Governance‑appropriate tone
+✅ Not alarmist
+✅ Conceptually final (visual polish only if desired)
+
+🎨 UX / Visual Design — ✅ STANDARDIZED
+
+Font: Segoe UI
+Background: white / very light gray
+Fixed cluster colors:
+
+Power Active: #1A9E3F
+Fresh Light: #6FB9F0
+Legacy Heavy: #4F617D
+Dormant: #B3B3B3
+
+
+Consistent color usage across pages
+Clear visual hierarchy
+No overdesign
+
+
+🧭 Cover Page & Navigation — ✅ IMPLEMENTED (IN PROGRESS POLISH)
+Cover Page
+
+Custom designed cover with background wallpaper
+Title, subtitle, author, institution
+Two buttons representing two different presentations:
+
+
+Data Model, Measures, and Validation
+Catalog Health, Usage Insights, and Strategic Recommendations
+
+Navigation
+
+Uses Page Navigation (not bookmarks)
+Buttons are native Power BI Button visuals
+Bookmarks reserved exclusively for in‑page visual states
+
+⚠️ Button behavior currently under final adjustment (interaction state), identified as a minor UI configuration task, not a structural issue.
+
+🎤 Oral Presentations — ✅ STRUCTURED
+Presentation 1 — Technical (≤10 min)
+Focus:
+
+Data source
+Star schema
+Measures
+Cluster logic
+Data model validation page
+
+Presentation 2 — Analytical & Strategic (≤10 min)
+Focus:
+
+Dataset health overview
+Usage & impact analysis
+Drill‑down & tooltip demonstration
+Strategic recommendations
+
+✅ Full talk tracks defined
+✅ Clear separation of intent and audience
+
+✅ CURRENT PROJECT STATUS (HONEST SUMMARY)
+✅ Data model — done
+✅ Business logic — done
+✅ Page 01 — final
+✅ Page 02 — final
+✅ Page 03 — closed
+✅ Page 05 — content complete
+✅ Tooltips & drill‑down — implemented
+✅ Dual‑presentation structure — defined
+⏳ Minor cover‑page button interaction polish remaining
+🎯 Overall completion: ~92–95%
+
+🧠 Key Note (Mental Translation)
+The project has moved from:
+
+“Building analysis”
+
+to:
+
+“Final packaging, navigation, and communication.”
+
+Nothing structural remains.
+
+**********************
+UPDATE DE 9 E ABRIL
+
+🔀 Report Interactivity — ✅ IMPLEMENTED
+
+Dimensional slicers (e.g., Cluster / AgeBand) visible in Report View
+Hierarchy‑based drill‑down enabled
+Tooltips used selectively for analytical depth
+
+✅ Interactivity is clear, intuitive, and reproducible
+
+📊 Report Pages — CURRENT STATE
+✅ Page 01 — Data Model Validation
+
+Star schema illustration
+Cluster distribution
+Hierarchy demonstration
+
+✅ Page 02 — Dataset Health Overview
+
+Executive‑level, non‑analytical
+Dataset counts and cluster distribution only
+
+✅ Page 03 — Usage & Impact
+
+Average annual usage calculated per dataset, then aggregated by cluster
+No volume bias from dataset age or size
+Drill‑down and tooltips enabled
+
+✅ Page 05 — Strategic Recommendations
+
+Governance‑oriented actions
+No analytics or calculations presented
+
+
+🎨 UX & Field Visibility — ✅ PARTIALLY FINALIZED
+✅ Completed (Report View)
+
+Only explicit measures exposed for visuals
+Fields causing implicit aggregation (Σ) are no longer used in any report visual
+Visuals reflect correct metric definitions and scales
+
+🔧 Planned Refinements (Post‑Presentation Cleanup)
+
+Hide remaining technical columns in Model view (e.g., raw Usage)
+Optionally move measures into a dedicated Measures table for model hygiene
+Final audit to ensure zero legacy calculated columns remain
+
+📌 These refinements do not impact analytical correctness or presentation logic and are scheduled after current presentation delivery.
+
+🎤 Presentation Structure (Confirmed)
+Presentation 1 — Technical (≈ 3 minutes)
+Focus:
+
+Star schema
+Fact vs. dimension roles
+Hierarchies
+Explicit DAX measures
+Model validation
+
+Presentation 2 — Analytical & Strategic
+Focus:
+
+Dataset health overview
+Usage per dataset (not total volume)
+Drill‑down demonstration
+Strategic recommendations
+
+
+✅ CURRENT STATUS SUMMARY
+✅ Data model complete
+✅ Hierarchy formalized
+✅ Measures converted to explicit DAX
+✅ Report visuals corrected and validated
+✅ Slicers and interactivity visible
+🟡 Minor model‑view cleanup planned
+🎯 Project ready for presentation
+
+🧾 2️⃣ ADD‑ON — PROMPT ATUALIZADO (VERSÃO + ARTEFATO)
+Você pode acrescentar este bloco ao final do prompt que já montamos:
+
+📄 Current Deliverable Snapshot
+The current state of the project is represented by the file:
+OpenDataMetrics.pdf
+This document reflects:
+
+The validated star schema usage
+Dataset‑level analytical measures
+Correct application of hierarchies and slicers
+Final report visuals used for presentation purposes
+
+✅ All report‑level metrics shown in this artifact use explicit DAX measures only
+✅ No implicit aggregations (Σ) are present in final visuals
+✅ The PDF represents the authoritative presentation version at this stage
+
+🔧 Post‑Presentation Refinements (Deferred by Design)
+The following technical refinements are intentionally deferred and do not affect analytical validity:
+
+Final removal of legacy calculated columns still present in the model
+Additional hiding of technical fields in Model view
+Optional consolidation of measures into a dedicated Measures table
+
+These actions represent model hygiene improvements, not logic corrections.
+
+🎤 3️⃣ O QUE ISSO SIGNIFICA PARA O SPEECH (IMPORTANTE)
+Isso te libera mentalmente para:
+✅ Speech 1 (3 minutos)
+Focar exclusivamente em:
+
+Star schema
+Fact vs dimension roles
+Hierarchy object
+Explicit measures
+Validation logic
+
+Sem falar de:
+
+cleanup pendente
+colunas removidas
+refatorações internas
+
+👉 Se o professor estiver vendo o PDF, ele não tem como questionar isso agora.
+✅ Speech 2 (visualizações)
+Usar exatamente os gráficos do PDF:
+
+Eles já estão corretos
+Eles já sustentam a narrativa
+Eles já usam a versão “boa” das measures
