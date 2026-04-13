@@ -1,0 +1,177 @@
+📌 Project Prompt — Final (Atualizado e Alinhado ao Curso)
+Binary Classification of Obesity Risk Using Behavioral Attributes
+
+🔍 Project Context
+This project develops an end‑to‑end applied machine learning workflow using structured health‑related data, with a strong emphasis on problem framing, reproducibility, model validation, and interpretability, aligned with Applied Analytics and Business Intelligence practices.
+The dataset used is the UCI – Estimation of Obesity Levels Based on Eating Habits and Physical Condition, which contains demographic and behavioral attributes collected from individuals in Mexico, Peru, and Colombia.
+Rather than treating the task as a purely academic classification problem, the project is framed as a risk‑screening and decision‑support application, suitable for prevention programs and analytical reporting contexts.
+
+🎯 Problem Definition
+Binary Classification Task — Obesity Risk Screening
+The original multi‑class target (NObeyesdad) is reformulated into a binary, decision‑oriented target:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Binary TargetDefinition0 — No Obesity RiskInsufficient Weight, Normal Weight1 — Obesity RiskOverweight (Levels I & II) + All Obesity Types
+This reframing supports:
+
+Preventive health screening
+Prioritization of intervention efforts
+Behavioral risk profiling
+Policy‑oriented analytics
+
+
+🧠 Key Analytical Decisions (Project Evolution)
+⚠️ Leakage Awareness and Feature Redesign
+During model optimization, near‑perfect ROC‑AUC values revealed semantic leakage caused by including anthropometric variables (Weight and Height), which directly determine obesity labels via BMI.
+✅ Design Adjustment
+
+Weight and Height were explicitly removed
+The project scope was realigned to focus on behavioral and lifestyle risk factors, not diagnostic classification
+
+
+This decision improves generalization, interpretability, and real‑world analytical relevance.
+
+
+✅ Final Modeling Scope
+✅ Included Features
+
+Eating habits and dietary behavior
+Physical activity frequency
+Lifestyle indicators (technology use, transportation)
+Family history
+Demographics (non‑diagnostic)
+
+❌ Excluded Features
+
+Weight
+Height
+
+This decision is explicitly documented as part of the analytical narrative.
+
+🧪 Project Structure (Aligned with Classroom Requirements)
+The project is organized into three separate notebooks, as practiced in class.
+
+📘 Notebook 1 — Model Selection (Baseline Comparison)
+Objective
+Identify the best performing model using cross‑validated baseline comparisons.
+Methods
+
+Pipeline‑based preprocessing (ColumnTransformer)
+One‑Hot Encoding with handle_unknown='ignore'
+Scaling strategies:
+
+No scaling
+StandardScaler
+MinMaxScaler
+
+
+
+Models Evaluated
+
+Logistic Regression
+K‑Nearest Neighbors
+Support Vector Machine
+Random Forest
+(via sklearn and/or AutoGluon, as introduced in class)
+
+Evaluation
+
+Stratified K‑Fold Cross‑Validation
+Primary metric: ROC‑AUC
+
+📌 Outcome:
+Logistic Regression with StandardScaler selected for its balance between performance and interpretability.
+
+📘 Notebook 2 — Hyperparameter Optimization
+Objective
+Improve the selected model using systematic hyperparameter search.
+Methods
+
+Search‑based optimization (GridSearchCV / RandomizedSearchCV or Optuna)
+Pipeline integrated inside cross‑validation
+Parameters tuned:
+
+Regularization strength (C)
+Penalty type (L1 vs L2)
+Class weights (to address imbalance)
+
+
+
+Result
+
+Optimized Logistic Regression
+Cross‑validated ROC‑AUC ≈ 0.92
+Improved stability and class balance handling
+
+
+📘 Notebook 3 — Final Model Evaluation & Performance Analysis
+Objective
+Produce a clear, concise evaluation of the final model on unseen data.
+Steps
+
+Train optimized model on training set
+Evaluate on held‑out test set
+Generate:
+
+ROC‑AUC
+Precision, Recall, F1‑Score
+Confusion Matrix
+Visualization comparing actual vs predicted values
+
+
+
+Focus
+
+Interpretation of false positives vs false negatives
+Suitability of the model for screening and decision support
+Business‑ and policy‑oriented interpretation
+
+
+📈 Final Deliverables
+✅ Three well‑structured Jupyter Notebooks
+✅ Clear separation of concerns (modeling, tuning, evaluation)
+✅ Explicit justification of modeling decisions
+✅ Reproducible pipelines and validation strategy
+✅ Narrative suitable for:
+
+Course evaluation
+Analytics portfolio
+Technical interviews
+
+
+✅ Success Criteria
+This project is successful if:
+
+The modeling approach is defensible and reproducible
+Leakage is identified and properly addressed
+Model selection and tuning are methodologically sound
+Interpretability is prioritized alongside performance
+The project reads as an applied analytics case study, not a tutorial
+
+
+📌 Current Status
+✅ Model selection completed
+✅ Hyperparameter optimization completed
+✅ Pipeline stabilized after leakage correction
+🔜 Next step pending professor feedback:
+
+Final polishing of evaluation notebook
+Possible metric or visualization adjustments
+
+
+💡 The evolution of this project reflects analytical maturity: decisions were refined as insights emerged, strengthening (not weakening) the final outcome.
